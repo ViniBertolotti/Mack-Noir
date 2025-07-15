@@ -86,7 +86,7 @@
     </div>
 
     <div class="dica">
-        📜 Dica: O código é composto por 3 palavras , separadas por "-".
+        📜 Dica: O código é composto por 3 palavras separadas por hífens (-).
     </div>
 
     <div class="input-area">
@@ -102,11 +102,11 @@
 
     <script>
         function checkCode() {
-            const input = document.getElementById("code").value.trim().toUpperCase();
+            const input = document.getElementById("code").value.trim().toLowerCase();
             const message = document.getElementById("message");
             const audio = document.getElementById("cofre-sound");
 
-            if (input === "MARTINI-MACKENZIE-FIM") {
+            if (input === "martini-mackenzie-fim") {
                 message.innerHTML = "<strong>✅ Missão concluída, agente.</strong><br>Você percorreu luz e sombra e abriu o Cofre Mack Noir.<br><br><span style='color:#d4af37;'>📡 Última instrução: Envie o código secreto abaixo para qualquer membro da comissão para confirmar o sucesso da operação.</span><br><br><span style='color:#d4af37;'>🔐 Código final: <strong>MACK2026</strong></span>";
                 message.className = "message success";
                 audio.play();
