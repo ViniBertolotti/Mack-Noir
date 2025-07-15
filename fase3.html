@@ -15,19 +15,15 @@
         h1 {
             color: #d4af37;
         }
-        #start-audio {
-            padding: 15px 30px;
-            font-size: 18px;
-            background-color: #d4af37;
-            border: none;
-            border-radius: 8px;
-            color: #000;
-            cursor: pointer;
-            margin-top: 50px;
+        .hidden-play {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            opacity: 0;
+            pointer-events: none;
         }
         .input-area {
             margin-top: 30px;
-            display: none; /* Esconde até o áudio ser ativado */
         }
         input[type="text"] {
             padding: 10px;
@@ -60,14 +56,14 @@
     <h1>Mack Noir - Fase 3</h1>
     <p>Intercepte a transmissão e decifre o código para avançar.</p>
 
-    <!-- Botão para iniciar o áudio -->
-    <button id="start-audio" onclick="iniciarMissao()">Ativar Áudio e Iniciar Missão</button>
-
     <!-- Áudio de fundo em loop -->
     <audio id="bg-audio" loop>
         <source src="audio/enigma.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
+
+    <!-- Play invisível -->
+    <button class="hidden-play" id="hidden-play" onclick="playAudio()"></button>
 
     <div class="input-area" id="input-area">
         <input type="text" id="password" placeholder="Digite a senha...">
@@ -76,16 +72,16 @@
     </div>
 
     <script>
-        function iniciarMissao() {
+        function playAudio() {
             const audio = document.getElementById("bg-audio");
-            const startButton = document.getElementById("start-audio");
-            const inputArea = document.getElementById("input-area");
-
-            // Toca o áudio e mostra a área de senha
             audio.play();
-            startButton.style.display = "none";
-            inputArea.style.display = "block";
         }
+
+        // Dispara o click no botão invisível assim que o usuário interage
+        document.addEventListener('click', function() {
+            const hiddenPlay = document.getElementById('hidden-play');
+            hiddenPlay.click();
+        }, { once: true });
 
         function checkPassword() {
             const input = document.getElementById("password").value.trim().toUpperCase();
