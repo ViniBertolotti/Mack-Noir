@@ -15,8 +15,19 @@
         h1 {
             color: #d4af37;
         }
+        #start-audio {
+            padding: 15px 30px;
+            font-size: 18px;
+            background-color: #d4af37;
+            border: none;
+            border-radius: 8px;
+            color: #000;
+            cursor: pointer;
+            margin-top: 50px;
+        }
         .input-area {
             margin-top: 30px;
+            display: none; /* Esconde até o áudio ser ativado */
         }
         input[type="text"] {
             padding: 10px;
@@ -25,7 +36,7 @@
             border: none;
             border-radius: 5px;
         }
-        button {
+        button.access-btn {
             padding: 10px 20px;
             font-size: 16px;
             background-color: #d4af37;
@@ -49,28 +60,32 @@
     <h1>Mack Noir - Fase 3</h1>
     <p>Intercepte a transmissão e decifre o código para avançar.</p>
 
+    <!-- Botão para iniciar o áudio -->
+    <button id="start-audio" onclick="iniciarMissao()">Ativar Áudio e Iniciar Missão</button>
+
     <!-- Áudio de fundo em loop -->
-    <audio id="bg-audio" autoplay muted loop>
+    <audio id="bg-audio" loop>
         <source src="audio/enigma.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
 
-    <div class="input-area">
+    <div class="input-area" id="input-area">
         <input type="text" id="password" placeholder="Digite a senha...">
-        <button onclick="checkPassword()">Acessar</button>
+        <button class="access-btn" onclick="checkPassword()">Acessar</button>
+        <div id="message" class="message"></div>
     </div>
 
-    <div id="message" class="message"></div>
-
     <script>
-        // Ativar som após carregar
-        const audio = document.getElementById("bg-audio");
-        window.addEventListener('load', () => {
-            audio.muted = false;
-            audio.play().catch(() => {
-                console.log("Autoplay bloqueado, o áudio só tocará após interação.");
-            });
-        });
+        function iniciarMissao() {
+            const audio = document.getElementById("bg-audio");
+            const startButton = document.getElementById("start-audio");
+            const inputArea = document.getElementById("input-area");
+
+            // Toca o áudio e mostra a área de senha
+            audio.play();
+            startButton.style.display = "none";
+            inputArea.style.display = "block";
+        }
 
         function checkPassword() {
             const input = document.getElementById("password").value.trim().toUpperCase();
