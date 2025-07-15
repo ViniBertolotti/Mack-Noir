@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mack Noir - Cofre Final</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #d4af37;
+            font-size: 2.5em;
+        }
+        .poem {
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-top: 40px;
+            white-space: pre-wrap;
+            border-left: 3px solid #d4af37;
+            padding-left: 15px;
+            animation: fadeIn 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            0% {opacity: 0;}
+            100% {opacity: 1;}
+        }
+        .input-area {
+            margin-top: 40px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 350px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d4af37;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+        .success {
+            color: #5cb85c;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mack Noir - Cofre Final</h1>
+
+    <div class="poem" id="poem">
+        Nos bastidores onde o jazz sussurra baixinho,  
+        Há um brinde icônico servido primeiro no caminho.  
+        Qual a bebida que o agente sempre pede em ação?  
+        Ela será a chave inicial desta operação.  
+
+        Os agentes se reúnem sob um mesmo ideal,  
+        Qual palavra descreve a instituição central?  
+        Procure no briefing onde tudo tem raiz,  
+        E terá o segundo elo que o cofre diz.  
+
+        Quando a última porta se fechar e a luz se apagar,  
+        Que palavra anuncia que nada mais há para buscar?  
+        Escreva o destino de toda jornada,  
+        E o cofre abrirá sua entrada selada.  
+
+        Junte as chaves, decifre o portal,  
+        Apenas o verdadeiro espião alcança o final.
+    </div>
+
+    <div class="input-area">
+        <input type="text" id="code" placeholder="Digite o código final...">
+        <button onclick="checkCode()">Desbloquear Cofre</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <audio id="cofre-sound">
+        <source src="audio/cofre-aberto.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function checkCode() {
+            const input = document.getElementById("code").value.trim().toUpperCase();
+            const message = document.getElementById("message");
+            const audio = document.getElementById("cofre-sound");
+
+            if (input === "MARTINI-MACKENZIE-FIM") {
+                message.innerHTML = "<strong>✅ Missão concluída, agente.</strong><br>Você percorreu luz e sombra e abriu o cofre Mack Noir.<br><br><span style='color:#d4af37;'>🔐 Código final: <strong>MACK2026</strong></span>";
+                message.className = "message success";
+                audio.play();
+            } else {
+                message.textContent = "Acesso negado. Revise as pistas e tente novamente.";
+                message.className = "message";
+            }
+        }
+    </script>
+</body>
+</html>
