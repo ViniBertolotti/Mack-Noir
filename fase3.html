@@ -50,7 +50,7 @@
     <p>Intercepte a transmissão e decifre o código para avançar.</p>
 
     <!-- Áudio de fundo em loop -->
-    <audio autoplay loop>
+    <audio id="bg-audio" autoplay muted loop>
         <source src="audio/enigma.mp3" type="audio/mpeg">
         Seu navegador não suporta áudio.
     </audio>
@@ -63,11 +63,19 @@
     <div id="message" class="message"></div>
 
     <script>
+        // Ativar som após carregar
+        const audio = document.getElementById("bg-audio");
+        window.addEventListener('load', () => {
+            audio.muted = false;
+            audio.play().catch(() => {
+                console.log("Autoplay bloqueado, o áudio só tocará após interação.");
+            });
+        });
+
         function checkPassword() {
             const input = document.getElementById("password").value.trim().toUpperCase();
             const message = document.getElementById("message");
 
-            // Senha definida no áudio: COFRE
             if (input === "COFRE") {
                 message.textContent = "Acesso concedido! Avançando para a próxima fase...";
                 message.className = "message success";
