@@ -48,7 +48,28 @@
 <body>
     <h1>Mack Noir - Missão Secreta</h1>
     <p>Bem-vindo, agente. Você descobriu a primeira pista no briefing e agora precisa avançar.</p>
-    <p><em>“Para desbloquear o próximo nível, encontre a senha formada pelas iniciais de cada membro da comissão.”</em></p>
+    <p><em>“Para avançar na missão, um verdadeiro espião precisa conhecer bem quem está ao seu redor. Quem somos nós, afinal?”</em></p>
+    <div id="dica-container" style="margin-top: 20px;">
+    <button onclick="mostrarDica()" style="
+        padding: 10px 20px; 
+        font-size: 16px; 
+        background-color: #d4af37; 
+        color: #000; 
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer;">
+        Mostrar Dica
+    </button>
+    <p id="dica" style="display: none; margin-top: 10px; color: #d4af37;">
+        Nossas iniciais, organizadas em ordem alfabética, revelam a chave para o próximo nível.
+    </p>
+</div>
+
+<script>
+function mostrarDica() {
+    document.getElementById("dica").style.display = "block";
+}
+</script>
 
     <div class="input-area">
         <input type="text" id="password" placeholder="Digite a senha...">
