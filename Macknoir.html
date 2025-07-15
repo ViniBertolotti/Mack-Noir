@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mack Noir - Missão</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #d4af37;
+        }
+        .input-area {
+            margin-top: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d4af37;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+        .success {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mack Noir - Missão Secreta</h1>
+    <p>Bem-vindo, agente. Você descobriu a primeira pista no briefing e agora precisa avançar.</p>
+    <p><em>“Para desbloquear o próximo nível, encontre a senha formada pelas iniciais de cada membro da comissão.”</em></p>
+
+    <div class="input-area">
+        <input type="text" id="password" placeholder="Digite a senha...">
+        <button onclick="checkPassword()">Acessar</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById("password").value.trim().toUpperCase();
+            const message = document.getElementById("message");
+
+            // Exemplo de senha: iniciais da comissão "ABCDEF"
+            if (input === "ABCDEF") {
+                message.textContent = "Acesso concedido! Avançando para a próxima fase...";
+                message.className = "message success";
+                setTimeout(() => {
+                    window.location.href = "fase3.html"; // Página da próxima fase
+                }, 2000);
+            } else {
+                message.textContent = "Acesso negado. Tente novamente, agente.";
+                message.className = "message";
+            }
+        }
+    </script>
+</body>
+</html>
