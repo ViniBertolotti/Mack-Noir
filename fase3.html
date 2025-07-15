@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mack Noir - Fase 3</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #fff;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #d4af37;
+        }
+        .input-area {
+            margin-top: 30px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            font-size: 16px;
+            width: 250px;
+            border: none;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #d4af37;
+            border: none;
+            border-radius: 5px;
+            color: #000;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .message {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #d9534f;
+        }
+        .success {
+            color: #5cb85c;
+        }
+    </style>
+</head>
+<body>
+    <h1>Mack Noir - Fase 3</h1>
+    <p>Intercepte a transmissão e decifre o código para avançar.</p>
+
+    <audio controls autoplay>
+        <source src="audio/enigma.mp3" type="audio/mpeg">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <div class="input-area">
+        <input type="text" id="password" placeholder="Digite a senha...">
+        <button onclick="checkPassword()">Acessar</button>
+    </div>
+
+    <div id="message" class="message"></div>
+
+    <script>
+        function checkPassword() {
+            const input = document.getElementById("password").value.trim().toUpperCase();
+            const message = document.getElementById("message");
+
+            // Senha definida no áudio: COFRE
+            if (input === "COFRE") {
+                message.textContent = "Acesso concedido! Avançando para a próxima fase...";
+                message.className = "message success";
+                setTimeout(() => {
+                    window.location.href = "fase4.html"; // Página da próxima fase
+                }, 2000);
+            } else {
+                message.textContent = "Acesso negado. Tente novamente, agente.";
+                message.className = "message";
+            }
+        }
+    </script>
+</body>
+</html>
